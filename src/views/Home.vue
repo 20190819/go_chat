@@ -33,23 +33,24 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       form: {
-        uname: '13500000001',
+        uname: '',
         tech: 'WebSocket'
       }
     }
   },
   methods: {
-    login () {
-      this.form.uname = Number(this.form.uname)
+    login() {
       console.log('login', this.form)
+      if(!this.form.uname){
+        return this.$message.error("用户名不能为空")
+      }
       this.$http.post('http://localhost:9090/join', this.form).then(res => {
-        console.log('login res', res.data)
         if (res.data.Code === 0) {
           this.$message.success('操作成功')
-          this.$nextTick(function () {
+          this.$nextTick(function() {
             this.$router.push({
               path: '/chatroom',
               query: { uname: this.form.uname }
@@ -66,7 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 .welcome {
-  background-color: #dcdfe6;
+  background-color: #e4e7ed;
   padding: 20px;
   text-align: center; /*让div内部文字居中*/
   border-radius: 10px;
