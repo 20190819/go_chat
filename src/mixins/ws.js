@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      host: 'localhost:9090',
+      host: '192.168.1.120:9090',
       uname: '',
       msgList: [
         // {

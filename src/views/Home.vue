@@ -47,7 +47,7 @@ export default {
       if (!this.form.uname) {
         return this.$message.error('用户名不能为空')
       }
-      this.$http.post('http://localhost:9090/join', this.form).then(res => {
+      this.$http.post('http://192.168.1.120:9090/join', this.form).then(res => {
         if (res.data.Code === 0) {
           this.$message.success('操作成功')
           this.$nextTick(function() {
