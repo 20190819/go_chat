@@ -44,8 +44,8 @@ export default {
   methods: {
     login() {
       console.log('login', this.form)
-      if(!this.form.uname){
-        return this.$message.error("用户名不能为空")
+      if (!this.form.uname) {
+        return this.$message.error('用户名不能为空')
       }
       this.$http.post('http://localhost:9090/join', this.form).then(res => {
         if (res.data.Code === 0) {

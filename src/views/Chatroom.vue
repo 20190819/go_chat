@@ -36,7 +36,13 @@
         ><span>{{ item.content }}</span>
       </div>
     </el-card>
-    <el-button class="w100 leave" size="small" type="danger" @click="$router.push('/')">离开</el-button>
+    <el-button
+      class="w100 leave"
+      size="small"
+      type="danger"
+      @click="$router.push('/')"
+      >离开</el-button
+    >
   </div>
 </template>
 
@@ -61,8 +67,8 @@ export default {
   },
   methods: {
     sendMessage() {
-      if(!this.msg){
-        return this.$message.info("消息不能为空")
+      if (!this.msg) {
+        return this.$message.info('消息不能为空')
       }
       console.log('send user msg >>>', this.msg)
       this.ws.send(this.msg)

@@ -29,7 +29,7 @@ export default {
                 uname: '',
                 content: '欢迎 【' + that.uname + '】加入 goChat 聊天室...'
               })
-            }else{
+            } else {
               that.msgList.push({
                 type: 'sys',
                 uname: '',
