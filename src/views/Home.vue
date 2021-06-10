@@ -4,7 +4,7 @@
       <h2>golang + vue + websocket</h2>
       <el-card class="box-card" shadow="never">
         <el-form ref="form" :model="form" label-width="60px">
-          <el-form-item label="手机号">
+          <el-form-item label="用户名">
             <el-input
               class="w100"
               clearable
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       form: {
-        uname: '',
+        uname: 'golang-001',
         tech: 'WebSocket'
       }
     }
