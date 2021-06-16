@@ -36,30 +36,42 @@ export default {
   data() {
     return {
       form: {
-        uname: 'golang-001',
+        uname: 'golang-' + this.randomNum(100000, 999999),
         tech: 'WebSocket'
       }
     }
   },
   methods: {
+    randomNum(minNum, maxNum) {
+      switch (arguments.length) {
+        case 1:
+          return parseInt(Math.random() * minNum + 1, 10)
+        case 2:
+          return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+        default:
+          return 0
+      }
+    },
     login() {
       console.log('login', this.form)
       if (!this.form.uname) {
         return this.$message.error('用户名不能为空')
       }
-      this.$http.post('http://192.168.1.120:9090/join', this.form).then(res => {
-        if (res.data.Code === 0) {
-          this.$message.success('操作成功')
-          this.$nextTick(function() {
-            this.$router.push({
-              path: '/chatroom',
-              query: { uname: this.form.uname }
+      this.$http
+        .post('http://192.168.1.120:9090/login', this.form)
+        .then(res => {
+          if (res.data.Code === 0) {
+            this.$message.success('操作成功')
+            this.$nextTick(function() {
+              this.$router.push({
+                path: '/chatroom',
+                query: { uname: this.form.uname }
+              })
             })
-          })
-        } else {
-          this.$message.error('操作异常')
-        }
-      })
+          } else {
+            this.$message.error('操作异常')
+          }
+        })
     }
   }
 }

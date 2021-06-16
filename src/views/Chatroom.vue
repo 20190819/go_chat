@@ -40,7 +40,7 @@
       class="w100 leave"
       size="small"
       type="danger"
-      @click="$router.push('/')"
+      @click="handleLeaveRoom"
       >离开</el-button
     >
   </div>
@@ -72,6 +72,17 @@ export default {
       }
       console.log('send user msg >>>', this.msg)
       this.ws.send(this.msg)
+    },
+    handleLeaveRoom() {
+      console.log('handleLeaveRoom')
+      this.$http
+        .post('http://192.168.1.120:9090/logout', { uname: this.uname })
+        .then(res => {
+          if (res.data.Code === 0) {
+            this.$message.success('操作成功')
+            this.$router.push('/')
+          }
+        })
     }
   }
 }
